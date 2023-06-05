@@ -1,5 +1,13 @@
 const express = require("express");
+const mysql = require("mysql");
+const bodyParser = require("body-parser");
 const app = express();
+
+
+// const bcrypt = require("bcrypt");//password encryptor
+// const users = [];
+
+app.use(bodyParser.urlencoded({extended: false}));
 
 //landing page router
 app.get('/', (req, res) => {
