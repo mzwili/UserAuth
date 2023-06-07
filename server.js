@@ -60,5 +60,29 @@ app.post("/register", (req, res) => {
     
 });
 
+app.post("/login", (req, res) => {
+    //get form data from request body
+    const {username, password} = req.body;
+
+    const dbconnect = mysqldb.createConnection({
+        host: 'localhost',
+        user: 'root',
+        database: 'usersdb',
+        password: 'fire123',
+    });
+
+    dbconnect.query(
+        "SELECT * FROM userdata WHERE username = ? AND password = ?;",[username, password],
+        (error, result) => {
+
+            if (error) console.error('Error storing data: ', error);
+            if(!result.length > 0) res.send("Wrong password or username")
+            // result.forEach((user) => {console.log(user)})
+            res.redirect("/admin");
+        }
+    );
+    
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT);
