@@ -30,8 +30,12 @@ app.get('/register', (req, res) => {
     res.render("register.ejs")
 });
 
-//home page router
+//login page router
 app.get('/login', (req, res) => {
+    res.render("login.ejs")
+});
+
+app.get('/logout', (req, res) => {
     res.render("login.ejs")
 });
 
